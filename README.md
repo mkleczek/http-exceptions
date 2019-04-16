@@ -9,3 +9,26 @@ I have been looking for something like this and the only one I could find was Sp
 * Following Spring philosophy it is a runtime exception (I know, I know - checked exceptions are evil but I like them :) )
 
 So here it is - a tiny library with exception types corresponding to HTTP status codes. Rooted - of course :) - in IOException hierarchy - as it should be from the very beginning.
+
+Throwing:
+~~~~
+Details myExceptionDetails = ...
+int code = ...
+throw new HttpException.create(code, myExceptionDetails);
+~~~~
+Catching:
+~~~~
+try {
+... really long try section - this is structured exception handling in the end
+}
+catch (Http404NotFoundException e) {
+//handle 404
+}
+catch (Http401UnauthorizedException e) {
+// handle 401
+}
+~~~~
+
+**TODO**
+* Add some Details implementations for most popular HTTP libraries (OkHttp is going to be first I guess)
+* I can't think of anything specific
